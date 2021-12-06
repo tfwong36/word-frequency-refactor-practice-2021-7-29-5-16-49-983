@@ -19,7 +19,14 @@ public class WordFrequencyGame {
         });
         return wordInfos;
     }
-
+    private String joinWordInfos(List<WordInfo> wordInfoList){
+        StringJoiner wordJoiner = new StringJoiner("\n");
+        for (WordInfo word : wordInfoList) {
+            String s = word.getValue() + " " +word.getWordCount();
+            wordJoiner.add(s);
+        }
+        return wordJoiner.toString();
+    }
     public String getResult(String sentence){
         if (sentence.split(SpaceRegex).length==1) {
             return sentence + " 1";
@@ -27,16 +34,9 @@ public class WordFrequencyGame {
             try {
                 List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
                 wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                return joinWordInfos(wordInfoList);
 
-                StringJoiner wordJoiner = new StringJoiner("\n");
-                for (WordInfo word : wordInfoList) {
-                    String s = word.getValue() + " " +word.getWordCount();
-                    wordJoiner.add(s);
-                }
-                return wordJoiner.toString();
             } catch (Exception e) {
-
-
                 return "Calculate Error";
             }
         }
