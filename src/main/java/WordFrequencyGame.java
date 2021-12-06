@@ -30,13 +30,11 @@ public class WordFrequencyGame {
     }
 
     public String getResult(String sentence){
-        try {
-            List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-            wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-            return joinWordInfos(wordInfoList);
-        } catch (Exception e) {
+        if (sentence == null)
             return "Calculate Error";
-        }
+        List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+        return joinWordInfos(wordInfoList);
 
     }
 }
