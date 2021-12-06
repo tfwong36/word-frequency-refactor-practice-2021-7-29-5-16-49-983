@@ -30,9 +30,6 @@ public class WordFrequencyGame {
     }
 
     public String getResult(String sentence){
-        if (sentence.split(SpaceRegex).length==1)
-            return sentence + " 1";
-
         try {
             List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
             wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
