@@ -19,8 +19,8 @@ public class WordFrequencyGame {
                 String[] words = sentence.split(SpaceRegex);
 
                 List<Input> inputList = new ArrayList<>();
-                for (String s : words) {
-                    Input input = new Input(s, 1);
+                for (String word : words) {
+                    Input input = new Input(word, 1);
                     inputList.add(input);
                 }
 
@@ -37,8 +37,8 @@ public class WordFrequencyGame {
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getValue() + " " +w.getWordCount();
+                for (Input word : inputList) {
+                    String s = word.getValue() + " " +word.getWordCount();
                     joiner.add(s);
                 }
                 return joiner.toString();
