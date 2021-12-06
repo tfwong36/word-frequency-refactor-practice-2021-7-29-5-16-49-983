@@ -7,7 +7,9 @@ public class WordFrequencyGame {
 
     private List<WordInfo> calculateWordFrequency(String sentence){
         List<String> words = Arrays.asList(sentence.split(SpaceRegex));
-        List<String> distinctWords = words.stream().distinct().collect(Collectors.toList());
+        List<String> distinctWords = words.stream()
+                                            .distinct()
+                                            .collect(Collectors.toList());
         List<WordInfo> wordInfos = new ArrayList<>();
         distinctWords.forEach(distinctWord -> {
             int frequency = (int) words.stream()
@@ -22,18 +24,16 @@ public class WordFrequencyGame {
         if (sentence.split(SpaceRegex).length==1) {
             return sentence + " 1";
         } else {
-
             try {
                 List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-
                 wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
-                StringJoiner joiner = new StringJoiner("\n");
+                StringJoiner wordJoiner = new StringJoiner("\n");
                 for (WordInfo word : wordInfoList) {
                     String s = word.getValue() + " " +word.getWordCount();
-                    joiner.add(s);
+                    wordJoiner.add(s);
                 }
-                return joiner.toString();
+                return wordJoiner.toString();
             } catch (Exception e) {
 
 
