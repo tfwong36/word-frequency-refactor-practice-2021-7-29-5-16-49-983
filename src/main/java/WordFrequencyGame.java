@@ -8,15 +8,15 @@ public class WordFrequencyGame {
 
     public static final String SpaceRegex = "\\s+";
 
-    public String getResult(String inputStr){
-        if (inputStr.split(SpaceRegex).length==1) {
-            return inputStr + " 1";
+    public String getResult(String sentence){
+        if (sentence.split(SpaceRegex).length==1) {
+            return sentence + " 1";
         } else {
 
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split(SpaceRegex);
+                String[] arr = sentence.split(SpaceRegex);
 
                 List<Input> inputList = new ArrayList<>();
                 for (String s : arr) {
