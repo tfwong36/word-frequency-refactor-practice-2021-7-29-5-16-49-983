@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
 
     public static final String SpaceRegex = "\\s+";
-    public static final String newLineDELIMITER = "\n";
+    public static final String NEW_LINE_DELIMITER = "\n";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     private List<WordInfo> calculateWordFrequency(String sentence){
@@ -23,11 +23,9 @@ public class WordFrequencyGame {
     }
 
     private String joinWordInfos(List<WordInfo> wordInfoList){
-        StringJoiner wordInfoStringJoiner = new StringJoiner(newLineDELIMITER);
-        wordInfoList.forEach( wordInfo ->{
-            wordInfoStringJoiner.add(wordInfo.getWord() + " " + wordInfo.getWordCount());
-        });
-        return wordInfoStringJoiner.toString();
+        return wordInfoList.stream()
+                .map(wordInfo -> wordInfo.getWord() + " " + wordInfo.getWordCount())
+                .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
     public String getResult(String sentence){
