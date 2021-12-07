@@ -5,6 +5,7 @@ public class WordFrequencyGame {
 
     public static final String SpaceRegex = "\\s+";
     public static final String newLineDELIMITER = "\n";
+    public static final String CALCULATE_ERROR = "Calculate Error";
 
     private List<WordInfo> calculateWordFrequency(String sentence){
         List<String> words = Arrays.asList(sentence.split(SpaceRegex));
@@ -31,7 +32,7 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence){
         if (sentence == null)
-            return "Calculate Error";
+            return CALCULATE_ERROR;
         List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
         wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
         return joinWordInfos(wordInfoList);
