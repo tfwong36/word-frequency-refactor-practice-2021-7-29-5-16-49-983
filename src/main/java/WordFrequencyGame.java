@@ -22,11 +22,11 @@ public class WordFrequencyGame {
     }
 
     private String joinWordInfos(List<WordInfo> wordInfoList){
-        StringJoiner wordJoiner = new StringJoiner(newLineDELIMITER);
+        StringJoiner wordInfoStringJoiner = new StringJoiner(newLineDELIMITER);
         wordInfoList.forEach( wordInfo ->{
-            wordJoiner.add(wordInfo.getWord() + " " + wordInfo.getWordCount());
+            wordInfoStringJoiner.add(wordInfo.getWord() + " " + wordInfo.getWordCount());
         });
-        return wordJoiner.toString();
+        return wordInfoStringJoiner.toString();
     }
 
     public String getResult(String sentence){
