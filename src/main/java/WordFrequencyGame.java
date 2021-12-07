@@ -3,12 +3,21 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
-    public static final String SpaceRegex = "\\s+";
+    public static final String SPACE_REGEX = "\\s+";
     public static final String NEW_LINE_DELIMITER = "\n";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
+
+    public String getResult(String sentence){
+        if (sentence == null)
+            return CALCULATE_ERROR;
+        List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
+        sortWordInfoListDescendingly(wordInfoList);
+        return joinWordInfos(wordInfoList);
+    }
+
     private List<WordInfo> calculateWordFrequency(String sentence){
-        List<String> words = Arrays.asList(sentence.split(SpaceRegex));
+        List<String> words = Arrays.asList(sentence.split(SPACE_REGEX));
         List<String> distinctWords = words.stream()
                                             .distinct()
                                             .collect(Collectors.toList());
@@ -28,16 +37,7 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private void descendingSortWordInfoList (List<WordInfo> wordInfoList){
+    private void sortWordInfoListDescendingly(List<WordInfo> wordInfoList){
         wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-    }
-
-    public String getResult(String sentence){
-        if (sentence == null)
-            return CALCULATE_ERROR;
-        List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-        descendingSortWordInfoList(wordInfoList);
-        return joinWordInfos(wordInfoList);
-
     }
 }
