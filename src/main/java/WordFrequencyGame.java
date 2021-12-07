@@ -28,11 +28,15 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
+    private void descendingSortWordInfoList (List<WordInfo> wordInfoList){
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+    }
+
     public String getResult(String sentence){
         if (sentence == null)
             return CALCULATE_ERROR;
         List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
-        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+        descendingSortWordInfoList(wordInfoList);
         return joinWordInfos(wordInfoList);
 
     }
